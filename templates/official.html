@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Official Portal | VNIT Guest House{% endblock %}
+
+{% block head %}
+<style>
+    .official-container {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .glass-login-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        padding: 40px;
+        width: 100%;
+        max-width: 450px;
+        animation: fadeIn 0.6s ease-out;
+    }
+    .official-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .official-header i {
+        font-size: 3rem;
+        color: #1e3a8a;
+    }
+    .form-control:focus {
+        border-color: #1e3a8a;
+        box-shadow: 0 0 0 0.25rem rgba(30, 58, 138, 0.25);
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="official-container">
+    <div class="glass-login-card">
+        <div class="official-header">
+            <i class="bi bi-shield-lock-fill"></i>
+            <h3 class="fw-bold mt-3 text-dark">Official Login</h3>
+            <p class="text-muted small">Faculty & Administrative Access Only</p>
+        </div>
+
+        <form onsubmit="alert('The Official Authentication service is currently under maintenance. Please contact the IT department/ Hi-Man .'); return false;">
+            <div class="mb-3">
+                <label class="form-label small fw-bold">Employee ID</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light border-end-0"><i class="bi bi-person"></i></span>
+                    <input type="text" class="form-control border-start-0" placeholder="Enter ID" required>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label small fw-bold">Official Password</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light border-end-0"><i class="bi bi-key"></i></span>
+                    <input type="password" class="form-control border-start-0" placeholder="••••••••" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 py-2 fw-bold shadow-sm">
+                Login to Dashboard
+            </button>
+        </form>
+
+        <div class="mt-4 text-center">
+            <a href="{{ url_for('home_page') }}" class="text-decoration-none small text-secondary">
+                <i class="bi bi-arrow-left"></i> Back to Main Portal
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

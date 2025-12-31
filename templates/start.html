@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <main class="container text-center text-white d-flex flex-column justify-content-center align-items-center"
+        style="min-height: 80vh;">
+    
+    <div class="mb-4">
+        <h1 class="display-4 fw-bold mb-2">Welcome to VNIT Guest House</h1>
+        <p class="lead">Select your portal to proceed with booking</p>
+    </div>
+
+    <div class="d-flex flex-column flex-md-row gap-3">
+      <a href="{{ url_for('student_verification') }}" 
+         class="btn btn-light btn-lg px-5 fw-semibold shadow">
+        Students
+      </a>
+      <a href="{{ url_for('official_page') }}" 
+         class="btn btn-light btn-lg px-5 fw-semibold shadow">
+        Official
+      </a>
+    </div>
+
+    <p class="mt-4 small">
+      Need help? <a href="#" class="text-info text-decoration-none" data-bs-toggle="modal" data-bs-target="#contactModal">View Help & Office Hours</a>
+    </p>
+  </main>
+{% endblock body %}

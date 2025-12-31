@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Guest House</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #e3f2fd, #ffffff);
+      margin: 0;
+      padding: 40px;
+      color: #333;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #1a4d8f;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 40px;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      padding: 30px 20px;
+      text-align: left;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h2 {
+      color: #204060;
+      border-left: 5px solid #4a90e2;
+      padding-left: 10px;
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .card ul {
+      list-style-type: disc;
+      margin-left: 30px;
+    }
+
+    .card li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .highlight {
+      color: #0073e6;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>About Us</h1>
+
+  <div class="container">
+    <!-- Card 1: Cancellation Policies -->
+    <div class="card">
+      <h2>1. Cancellation Policies</h2>
+      <ul>
+        <li>Cancellations made <span class="highlight">48 hours before check-in</span> receive a <span class="highlight">70% refund</span>.</li>
+        <li>Within <span class="highlight">24–48 hours</span>, 50% of the booking amount will be charged.</li>
+        <li>No refund for cancellations made <span class="highlight">less than 24 hours</span> before check-in or for no-shows.</li>
+        <li>Refunds (if applicable) will be processed within <span class="highlight">7–10 working days</span>.</li>
+      </ul>
+    </div>
+
+    <!-- Card 2: Accommodation -->
+    <div class="card">
+      <h2>2. Accommodation</h2>
+      <ul>
+        <li><span class="highlight">Guest House:</span> Single Room – ₹1800/day | Shared Room – ₹900/day</li>
+        <li><span class="highlight">Hostel Guest House:</span></li>
+        <ul>
+          <li>Single AC Room – ₹1200/day</li>
+          <li>Single Non-AC Room – ₹800/day</li>
+          <li>Shared AC Room – ₹600/day</li>
+          <li>Shared Non-AC Room – ₹400/day</li>
+        </ul>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 College Guest House | All Rights Reserved
+  </footer>
+
+</body>
+</html>

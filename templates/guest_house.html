@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VNIT | Guest House Selection</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            min-height: 100vh;
+            color: #222;
+        }
+
+        /* Navbar Styling */
+        .navbar-custom {
+            background: rgba(33, 37, 41, 0.8) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Header Title */
+        .page-title {
+            font-size: 34px;
+            margin: 40px 0 20px 0;
+            color: #ffffff;
+            text-align: center;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            font-weight: 600;
+        }
+
+        /* Container for Cards */
+        .guesthouse-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        /* Card Styling */
+        .guesthouse-card {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            width: 280px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.4s ease, background 0.4s ease;
+            position: relative;
+            text-decoration: none;
+            color: white;
+        }
+
+        .guesthouse-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .guesthouse-card img {
+            width: 100%;
+            height: 180px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .guesthouse-card b {
+            font-size: 18px;
+            display: block;
+        }
+
+        /* Badge for restricted house */
+        .badge-women {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #ff3860;
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 5px;
+        }
+
+        /* Hotels Button Logic */
+        .hotels-btn {
+            display: block;
+            margin: 40px auto;
+            padding: 12px 30px;
+            border-radius: 8px;
+            background: #9ca3af;
+            color: white;
+            border: none;
+            cursor: not-allowed;
+            text-decoration: none;
+            width: fit-content;
+        }
+
+        .hotels-btn.active {
+            background: #2563eb;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom shadow sticky-top">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand fw-semibold" >VNIT Guest House</a>
+                    
+            <div class="d-flex gap-2">
+              <a href="{{ url_for('about_us') }}" class="btn btn-primary btn-sm">About Us</a>
+              <a href="https://vnit.ac.in/" target="_blank" class="btn btn-outline-light btn-sm">Official VNIT Portal</a>
+                {% if session.get('user_id') %}
+                    <a href="{{ url_for('logout') }}" class="btn btn-danger btn-sm">Logout</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <h2 class="page-title">🏠 Select a Guest House</h2>
+
+    
+
+    <div class="guesthouse-container">
+
+        <div class="guesthouse-card" data-bs-toggle="modal" data-bs-target="#womenOnlyModal" style="cursor: pointer;">
+            <span class="badge-women">Women Guests Only</span>
+            <img src="https://vnit.ac.in/section/hostel/wp-content/uploads/2025/08/Anandi-Gopal-Joshi-scaled.jpg" alt="Anandi Gopal">
+            <b>Dr. Anandi Gopal Guest House</b>
+        </div>
+
+        <a href="{{ url_for('booking_page', house_id=2) }}" class="guesthouse-card">
+            <img src="https://vnit.ac.in/section/hostel/wp-content/uploads/2025/08/Meghnad-Saha-scaled.jpg" alt="Common GH">
+            <b>Common Guest House</b>
+        </a>
+
+        <a href="{{ url_for('booking_page', house_id=3) }}" class="guesthouse-card">
+            <img src="https://vnit.ac.in/section/hostel/wp-content/uploads/2025/08/S-RAMANUJAN-scaled.jpg" alt="S. Ramanujan">
+            <b>S. Ramanujan Guest House</b>
+        </a>
+
+    </div>
+
+    {% if all_full %}
+        <a href="/hotels" class="hotels-btn active">View Nearby Hotels</a>
+    {% else %}
+        <button class="hotels-btn">Hotels (Locked)</button>
+    {% endif %}
+
+    <div class="modal fade" id="womenOnlyModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow-lg border-0">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">⚠️ Gender Restriction Policy</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center p-4">
+                    <p class="fs-5">Dr. Anandi Gopal Guest House is strictly for <strong>Female Guests</strong> only.</p>
+                    <p class="text-muted small">You may proceed if you are booking for a female family member (Mother/Sister/Wife).</p>
+                </div>
+                <div class="modal-footer justify-content-center border-0 pb-4">
+                    <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Go Back</button>
+                    <a href="{{ url_for('booking_page', house_id=1) }}" class="btn btn-danger px-4">Proceed to Booking</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
